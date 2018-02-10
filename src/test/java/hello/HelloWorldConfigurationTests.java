@@ -30,6 +30,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.BDDAssertions.then;
 
 /**
@@ -71,9 +72,10 @@ public class HelloWorldConfigurationTests {
 
 	@Test
 	public void shouldReturn5Fibonnacci4() throws Exception {
-		ResponseEntity<Map> entity = this.testRestTemplate.getForEntity(
-				"http://localhost:" + this.mgt + "/fibonacci/4", Map.class);
 
-		BDDAssertions.then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+		final Fibonacci result = testRestTemplate.getForObject("/fibonacci/4", Fibonacci.class);
+
+		assertThat(result).isNotNull().extracting("fibonacci").containsOnlyOnce(3L);
+
 	}
 }
