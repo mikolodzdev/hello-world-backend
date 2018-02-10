@@ -23,6 +23,11 @@ public class HelloWorldController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
+    @RequestMapping(method=RequestMethod.GET)
+    public String health() {
+        return "OK";
+    }
+
     @RequestMapping(path = "/hello-world", method=RequestMethod.GET)
     public Greeting sayHello(@RequestParam(value="name", required=false, defaultValue="Stranger") String name) throws Exception {
         return new Greeting(counter.incrementAndGet(), String.format(template, name), "0.0.0.0");
