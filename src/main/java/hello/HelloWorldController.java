@@ -25,7 +25,7 @@ public class HelloWorldController {
 
     @RequestMapping(path = "/hello-world", method=RequestMethod.GET)
     public Greeting sayHello(@RequestParam(value="name", required=false, defaultValue="Stranger") String name) throws Exception {
-        return new Greeting(counter.incrementAndGet(), String.format(template, name), InetAddress.getLocalHost().getHostAddress());
+        return new Greeting(counter.incrementAndGet(), String.format(template, name), "0.0.0.0");
     }
 
     @RequestMapping(path = "/fibonacci/{f}", method=RequestMethod.GET)
