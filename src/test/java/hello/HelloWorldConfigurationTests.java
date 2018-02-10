@@ -69,4 +69,11 @@ public class HelloWorldConfigurationTests {
 		BDDAssertions.then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
+	@Test
+	public void shouldReturn5Fibonnacci4() throws Exception {
+		ResponseEntity<Map> entity = this.testRestTemplate.getForEntity(
+				"http://localhost:" + this.mgt + "/fibonacci/4", Map.class);
+
+		BDDAssertions.then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+	}
 }

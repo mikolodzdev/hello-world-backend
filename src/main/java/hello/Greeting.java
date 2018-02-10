@@ -4,10 +4,12 @@ public class Greeting {
 
     private final long id;
     private final String content;
+    private final String ip;
 
-    public Greeting(long id, String content) {
+    public Greeting(long id, String content, String ip) {
         this.id = id;
         this.content = content;
+        this.ip = ip;
     }
 
     public long getId() {
@@ -18,4 +20,7 @@ public class Greeting {
         return content;
     }
 
+    public String getIp() {
+        return ip;
+    }
 }
