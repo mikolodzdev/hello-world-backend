@@ -2,8 +2,9 @@ version: 0.2
 
 env:
   variables:
-    TAG_NAME_PREFIX: "default"
+    VERSION: "default"
     BUILD_START_TIME: ´date "+%F %T.%N"´
+    GIT_HASH: $(git log -1 --pretty=%h)
     REPOSITORY_URI: 066862996875.dkr.ecr.eu-central-1.amazonaws.com/hello-world
 phases:
   pre_build:
@@ -20,6 +21,7 @@ phases:
     commands:
       - echo Packaging application...
       - mvn package
+      - docker build -t hello-world/hello-world:${GIT_HASH} -t hello-world/hello-world:${VERSION}-${BUILD_START_TIME} -t hello-world/hello-world:latest
 artifacts:
   files:
     - target/hello-world-*.jar
