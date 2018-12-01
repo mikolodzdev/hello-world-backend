@@ -22,10 +22,10 @@ phases:
     commands:
       - echo Packaging application...
       - mvn package
-      - docker build -t $REPOSITORY_URI/hello-world:$GIT_HASH -t $REPOSITORY_URI/hello-world:$VERSION-$BUILD_START_TIME -t $REPOSITORY_URI/hello-world:latest .
-      - docker push $REPOSITORY_URI/hello-world:$GIT_HASH
-      - docker push $REPOSITORY_URI/hello-world:$VERSION-$BUILD_START_TIME
-      - docker push $REPOSITORY_URI/hello-world:latest
+      - docker build -t $REPOSITORY_URI:$GIT_HASH -t $REPOSITORY_URI:$VERSION-$BUILD_START_TIME -t $REPOSITORY_URI:latest .
+      - docker push $REPOSITORY_URI:$GIT_HASH
+      - docker push $REPOSITORY_URI:$VERSION-$BUILD_START_TIME
+      - docker push $REPOSITORY_URI:latest
 artifacts:
   files:
     - target/hello-world-*.jar
