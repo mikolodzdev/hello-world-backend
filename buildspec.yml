@@ -22,7 +22,7 @@ phases:
     commands:
       - echo Packaging application...
       - mvn package
-      - docker image build -t hello-world/hello-world:$GIT_HASH -t hello-world/hello-world:$VERSION-$BUILD_START_TIME -t hello-world/hello-world:latest
+      - docker build -t hello-world/hello-world:$GIT_HASH -t hello-world/hello-world:$VERSION-$BUILD_START_TIME -t hello-world/hello-world:latest .
 artifacts:
   files:
     - target/hello-world-*.jar
