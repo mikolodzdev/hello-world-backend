@@ -9,7 +9,10 @@ phases:
     commands:
       - BUILD_START_TIME=$(date "+%F %T.%N")
       - GIT_HASH=$(git log -1 --pretty=%h)
+      - export GIT_HASH
       - ECR_LOGIN_CMD=$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - export ECR_LOGIN_CMD
+      - printenv
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(ECR_LOGIN_CMD)
