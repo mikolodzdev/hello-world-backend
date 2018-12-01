@@ -7,7 +7,7 @@ env:
 phases:
   pre_build:
     commands:
-      - export BUILD_START_T=$(date "+%F %T.%N")
+      - export BUILD_START_TIME=´date "+%F %T.%N"´
       - export GIT_HASH=$(git log -1 --pretty=%h)
       - printenv
       - ECR_LOGIN_CMD=$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
@@ -22,7 +22,7 @@ phases:
     commands:
       - echo Packaging application...
       - mvn package
-      - docker build -t hello-world/hello-world:${GIT_HASH} -t hello-world/hello-world:${VERSION}-${BUILD_START_T} -t hello-world/hello-world:latest
+      - docker build -t hello-world/hello-world:${GIT_HASH} -t hello-world/hello-world:${VERSION}-${BUILD_START_TIME} -t hello-world/hello-world:latest
 artifacts:
   files:
     - target/hello-world-*.jar
