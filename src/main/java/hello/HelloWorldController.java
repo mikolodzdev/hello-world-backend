@@ -30,6 +30,7 @@ public class HelloWorldController {
 
     @RequestMapping(path = "/hello-world", method=RequestMethod.GET)
     public Greeting sayHello(@RequestParam(value="name", required=false, defaultValue="Stranger") String name) throws Exception {
+        LOGGER.info("Request...");
         return new Greeting(counter.incrementAndGet(), String.format(template, name), "0.0.0.0");
     }
 
