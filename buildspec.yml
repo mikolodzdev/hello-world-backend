@@ -3,16 +3,17 @@ version: 0.2
 env:
   variables:
     VERSION: "default"
-    BUILD_START_TIME: '$(date "+%F %T.%N")'
-    GIT_HASH: '$(git log -1 --pretty=%h)'
     REPOSITORY_URI: 066862996875.dkr.ecr.eu-central-1.amazonaws.com/hello-world
 phases:
   pre_build:
     commands:
+      - export BUILD_START_TIME=$(date "+%F %T.%N")
+      - export GIT_HASH=$(git log -1 --pretty=%h)
+      - printenv
+      - ECR_LOGIN_CMD=$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - echo Logging in to Amazon ECR...
       - aws --version
-      - printenv
-      - $(aws ecr get-login --no-include-email --region ${AWS_DEFAULT_REGION})
+      - $(ECR_LOGIN_CMD)
   build:
     commands:
       - echo Running test...
