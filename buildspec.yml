@@ -10,7 +10,7 @@ phases:
       - BUILD_START_TIME=$(date "+%d%m%y-%H%M%S")
       - aws --version
       - GIT_HASH=$(git log -1 --pretty=%h)
-      - ECR_LOGIN_CMD=$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - ECR_LOGIN_CMD=$(aws ecr get-login --region $AWS_REGION --no-include-email)
       - printenv
       - echo Logging in to Amazon ECR...
       - $ECR_LOGIN_CMD
@@ -29,4 +29,5 @@ phases:
 artifacts:
   files:
     - target/hello-world-*.jar
+  name: $AWS_REGION-$BUILD_START_TIME
   discard-path: yes
