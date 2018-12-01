@@ -3,8 +3,8 @@ version: 0.2
 env:
   variables:
     VERSION: "default"
-    BUILD_START_TIME: ´date "+%F %T.%N"´
-    GIT_HASH: ´git log -1 --pretty=%h´
+    BUILD_START_TIME: "$(date "+%F %T.%N")"
+    GIT_HASH: "$(git log -1 --pretty=%h)"
     REPOSITORY_URI: 066862996875.dkr.ecr.eu-central-1.amazonaws.com/hello-world
 phases:
   pre_build:
