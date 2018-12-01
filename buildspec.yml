@@ -29,5 +29,5 @@ phases:
 artifacts:
   files:
     - target/hello-world-*.jar
-  name: $AWS_REGION-$BUILD_START_TIME
+  name: $VERSION-$GIT_HASH-$BUILD_START_TIME
   discard-path: yes
