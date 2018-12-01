@@ -7,9 +7,8 @@ env:
 phases:
   pre_build:
     commands:
-      - export BUILD_START_TIME=´date "+%F %T.%N"´
-      - export GIT_HASH=$(git log -1 --pretty=%h)
-      - printenv
+      - BUILD_START_TIME=$(date "+%F %T.%N")
+      - GIT_HASH=$(git log -1 --pretty=%h)
       - ECR_LOGIN_CMD=$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - echo Logging in to Amazon ECR...
       - aws --version
