@@ -26,8 +26,11 @@ phases:
       - docker push $REPOSITORY_URI:$GIT_HASH
       - docker push $REPOSITORY_URI:$VERSION-$BUILD_START_TIME
       - docker push $REPOSITORY_URI:latest
+      - echo Writing image definitions file...
+      - printf '[{"name":"hello-world","imageUri":"%s"}]' $REPOSITORY_URI:$GIT_HASH > imagedefinitions.json
 artifacts:
   files:
     - target/hello-world-*.jar
+    - imagedefinitions.json
   name: $VERSION-$GIT_HASH-$BUILD_START_TIME
   discard-path: yes
